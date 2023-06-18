@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model State {
+  id      String    @id @default(uuid())
+  name    String
+  acronym String    @unique @db.VarChar(2)
+  City    City[]
+  Address Address[]
+
+  @@index([acronym])
+}
+
+model City {
+  id      String    @id @default(uuid())
+  stateId String
+  name    String
+  State   State     @relation(fields: [stateId], references: [id])
+  Address Address[]
+}
+
+model User {
+  id       String @id @default(uuid())
+  email    String @unique
+  password String
+}
+
+model Farmer {
+  id       String   @id @default(uuid())
+  name     String
+  farmName String
+  Address  Address?
+}
+
+model Address {
+  id        String   @id @default(uuid())
+  farmerId  String   @unique
+  stateId   String
+  cityId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Farmer    Farmer   @relation(fields: [farmerId], references: [id])
+  State     State    @relation(fields: [stateId], references: [id])
+  City      City     @relation(fields: [cityId], references: [id])
+}
