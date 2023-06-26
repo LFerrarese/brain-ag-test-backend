@@ -3,7 +3,7 @@ import mock from "./db.json";
 
 const prisma = new PrismaClient();
 
-console.log("Seeding database with address information");
+console.log("Seeding database with ADDRESS information");
 
 async function createStates() {
   try {
@@ -35,7 +35,7 @@ createStates()
   .then(async () => {
     await createCities().then(async () => {
       await prisma.$disconnect();
-      console.log("Database seeding successfuly completed");
+      console.log("ADDRESS seeding completed");
     });
   })
   .catch(async () => {

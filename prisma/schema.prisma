@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "./generated"
 }
 
 datasource db {
@@ -17,6 +18,12 @@ model State {
   @@index([acronym])
 }
 
+model Crop {
+  id         String       @id @default(uuid())
+  name       String       @unique
+  FarmerCrop FarmerCrop[]
+}
+
 model City {
   id      String    @id @default(uuid())
   stateId String
@@ -28,14 +35,31 @@ model City {
 model User {
   id       String @id @default(uuid())
   email    String @unique
+  phone    String @unique
+  name     String
   password String
 }
 
 model Farmer {
-  id       String   @id @default(uuid())
-  name     String
-  farmName String
-  Address  Address?
+  id             String       @id @default(uuid())
+  name           String
+  document       String
+  farmName       String
+  totalArea      Int
+  arableArea     Int
+  vegetationArea Int
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  Address        Address?
+  FarmerCrop     FarmerCrop[]
+}
+
+model FarmerCrop {
+  id       String @id @default(uuid())
+  farmerId String
+  cropId   String
+  Farmer   Farmer @relation(fields: [farmerId], references: [id])
+  Crop     Crop   @relation(fields: [cropId], references: [id])
 }
 
 model Address {

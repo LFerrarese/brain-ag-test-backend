@@ -1,7 +1,7 @@
-
 # Brain Ag Test - Backend
 
 This project was made for a company test.
+
 ## Running locally
 
 Clone the repository
@@ -19,10 +19,11 @@ Enter the project directory
 Create an **.env** file with the variables below
 
 ```javascript
-  // change the fields with your data
-  
-  DATABASE_URL="postgresql://username:password@hostname:port/db_name?schema=public"
-  API_PORT=4000
+// change the fields with your data
+
+DATABASE_URL =
+  "postgresql://username:password@hostname:port/db_name?schema=public";
+API_PORT = 4000;
 ```
 
 Install the dependencies
@@ -40,5 +41,5 @@ Feed the database with the seeds
 Start the server
 
 ```bash
-  pnpm run nodemon
+  pnpm run dev
 ```

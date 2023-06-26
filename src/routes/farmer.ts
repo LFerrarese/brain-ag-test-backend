@@ -5,8 +5,9 @@ const controller = new FarmerController();
 
 const farmerRouter = Router();
 
-farmerRouter.get("/:id", controller.get);
-farmerRouter.get("/", controller.get);
+farmerRouter.get("/find/:id", controller.get);
+farmerRouter.get("/find", controller.get);
+farmerRouter.get("/analytics", controller.getAnalytics);
 farmerRouter.post("/create", controller.create);
 farmerRouter.put("/update", controller.update);
 

@@ -34,6 +34,8 @@ export const exceptionHandler: ExceptionHandler = (
   response,
   _next
 ) => {
+  console.error({ exception });
+
   if (exception instanceof RequestError) {
     return response.status(400).json({
       message: exception.message,
@@ -48,9 +50,11 @@ export const exceptionHandler: ExceptionHandler = (
 
   if (exception instanceof AuthenticationError) {
     return response.status(401).json({
-      message: "Unauthorized",
+      message: exception.message || "Unauthorized",
     });
   }
+
+  console.log({ error: exception });
 
   return response.status(500).json({
     message: "Internal Server Error",
