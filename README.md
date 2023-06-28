@@ -24,6 +24,7 @@ Create an **.env** file with the variables below
 DATABASE_URL =
   "postgresql://username:password@hostname:port/db_name?schema=public";
 API_PORT = 4000;
+JWT_SECRET = "some hash";
 ```
 
 Install the dependencies

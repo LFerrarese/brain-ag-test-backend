@@ -7,7 +7,7 @@
     "test": "jest",
     "seed:address": "ts-node prisma/seed/address/index.ts",
     "seed:crop": "ts-node prisma/seed/crop/index.ts",
-    "dev:up": "pnpm run seed:address && pnpm run seed:crop",
+    "dev:up": "pnpm prisma migrate dev && pnpm run seed:address && pnpm run seed:crop",
     "dev:start": "ts-node src/index.ts",
     "dev": "nodemon"
   },
